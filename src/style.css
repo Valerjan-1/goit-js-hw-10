@@ -5,7 +5,15 @@ img {
 }
 
 .hidden {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  overflow: hidden;
 }
 p {
   margin: 0;
@@ -51,8 +59,10 @@ p {
   max-width: 900px;
   margin-top: 100px;
   gap: 50px;
+  border: 2px solid #000000;
 }
-@media only screen and (max-width: 650px) {
+
+@media only screen and (max-width: 780px) {
   .cat-info {
     flex-wrap: wrap;
   }
@@ -60,13 +70,20 @@ p {
 .cat-container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  /* flex-direction: row; */
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-evenly;
 }
 .cat-name {
   font-size: 30px;
   margin: 0;
 }
-.cat-description-text {
-  font-size: 20px;
+.cat-description-title {
+  font-size: 22px;
   font-weight: 700;
+}
+.cat-description {
+  font-size: 18px;
+  line-height: 1.5;
 }
