@@ -16,18 +16,22 @@ loader.classList.replace('loader', 'hidden');
 error.classList.add('hidden');
 catInfo.classList.add('hidden');
 
-let arrBreedsId = [];
+// let arrBreedsId = [];
 fetchBreeds()
   .then(data => {
-    data.forEach(element => {
-      arrBreedsId.push({ text: element.name, value: element.id });
-    });
+    selector.innerHTML = createSelectorOption(data);
+
     new SlimSelect({
       select: selector,
-      data: arrBreedsId,
     });
   })
   .catch(onError);
+
+function createSelectorOption(dataArr) {
+  return dataArr
+    .map(({ name, id }) => `<option value="${id}">${name}</option>`)
+    .join(``);
+}
 
 selector.addEventListener('change', onSelectBreed);
 
@@ -60,7 +64,7 @@ function createMarkup(data) {
           </div>`;
 }
 
-function onError() {
+function onError(err) {
   selector.classList.remove('hidden');
   loader.classList.replace('loader', 'hidden');
 
